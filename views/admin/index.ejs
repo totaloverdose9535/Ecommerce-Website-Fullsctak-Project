@@ -1,0 +1,89 @@
+<%- include("navbar.ejs") %>
+<!-- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+<canvas id="myChart" style="width:100%;max-width:1200px"></canvas>
+
+<script>
+const xValues = [
+  <% for(var i=0;i<last_week_orders.length;i++) { %>
+    '<%= last_week_orders[i].date %>',
+  <% } %>
+];
+const yValues = [
+  <% for(var i=0;i<last_week_orders.length;i++) { %>
+    '<%= last_week_orders[i].orders %>',
+  <% } %>
+];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+        display: true,
+        text: "WEEK ORDER HISTORY"
+    },
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 0, max:10}}],
+    }
+  }
+});
+</script> -->
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+<canvas id="Chart" style="width:100%;max-width:1200px;margin-top: 100px;"></canvas>
+
+<script>
+const xValues = [
+  <% for(var i=0;i<monthly_orders.length;i++) { %>
+    '<%= monthly_orders[i].months %>',
+  <% } %>
+];
+const yValues = [
+  <% for(var i=0;i<monthly_orders.length;i++) { %>
+    '<%= monthly_orders[i].order %>',
+  <% } %>
+];
+
+new Chart("Chart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+        display: true,
+        text: "MONTH ORDER HISTORY"
+    },
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 0, max:10}}],
+    }
+  }
+});
+</script>
+
+
+<%- include("footer.ejs") %>

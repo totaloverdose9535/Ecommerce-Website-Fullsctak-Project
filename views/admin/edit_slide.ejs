@@ -1,0 +1,45 @@
+<%- include("navbar.ejs") %>
+<form action="/admin/update_slide" method="post" enctype="multipart/form-data">
+<input type="hidden" name="slider_id" value="<%- slider_info.slider_id %>">
+<div class="container-fluid bg-white p-4">
+    <div class="row">
+        <div class="mb-3 col-md-12">
+            <h3>Edit Slider</h3>
+        </div>
+
+        <div class="mb-3 col-12">
+            Enter Title
+            <input type="text" value="<%- slider_info.slide_title %>" name="slide_title" class="form-control">
+        </div>
+
+        <div class="mb-3 col-12">
+            Enter Details
+            <textarea name="slide_details" class="form-control"> <%- slider_info.slide_details %> </textarea>
+        </div>
+
+        <div class="mb-3 col-12">
+            Button Link
+            <input type="url" name="button_link" value="<%- slider_info.button_link %>" class="form-control">
+        </div>
+
+        <div class="mb-3 col-6">
+            Button Text
+            <input type="text" name="button_text" value="<%- slider_info.button_text %>" class="form-control">
+        </div>
+
+        <div class="mb-3 col-4">
+            Slider Image
+            <input type="file" name="slide_image" class="form-control" accept="image/*">
+            <div>
+                <img src="/uploads/<%- slider_info.slide_image %>">
+            </div>
+        </div>
+
+        <div class="mb-3 col-12 text-center">
+            <button class="btn btn-primary">Update Slide</button>
+        </div>
+    </div>
+</div>
+</form>
+
+<%- include("footer.ejs") %>

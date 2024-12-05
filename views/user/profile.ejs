@@ -1,0 +1,14 @@
+<%- include("navbar.ejs") %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="/user_info/<%-customer.customer_id%>"><button class="btn btn-primary">User Details</button></a>
+        </div>
+        <div class="col-md-3">
+            <a href="/user_orders/<%-customer.customer_id%>"><button class="btn btn-primary">Your Orders</button></a>
+        </div>
+    </div>
+</div>
+
+
+<%- include("footer.ejs") %>

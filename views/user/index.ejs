@@ -1,0 +1,366 @@
+<%- include("navbar.ejs") %>
+
+    <section id="billboard" class="overflow-hidden">
+
+      <button class="button-prev">
+        <i class="icon icon-chevron-left"></i>
+      </button>
+      <button class="button-next">
+        <i class="icon icon-chevron-right"></i>
+      </button>
+      <div class="swiper main-swiper">
+        <div class="swiper-wrapper">
+          <% for(var i=0;i<slides.length;i++){ %>
+          <div class="swiper-slide" style="background-image: url('/uploads/<%- slides[i].slide_image %>');background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <div class="banner-content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h2 class="banner-title"><%- slides[i].slide_title %></h2>
+                    <p><%- slides[i].slide_details %></p>
+                    <div class="btn-wrap">
+                      <a href="<%- slides[i].button_link %>" class="btn btn-light btn-medium d-flex align-items-center" tabindex="0"><%- slides[i].button_text %> <i class="icon icon-arrow-io"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+          <div class="swiper-slide" style="background-image: url('images/banner2.jpg');background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <div class="banner-content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h2 class="banner-title">Casual Collection</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac.</p>
+                    <div class="btn-wrap">
+                      <a href="/shop" class="btn btn-light btn-light-arrow btn-medium d-flex align-items-center" tabindex="0">Shop it now <i class="icon icon-arrow-io"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured-products" class="product-store padding-large">
+      <div class="container">
+        <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
+          <h2 class="section-title">Featured Products</h2>            
+          <div class="btn-wrap">
+            <a href="/shop" class="d-flex align-items-center">View all products <i class="icon icon icon-arrow-io"></i></a>
+          </div>            
+        </div>
+        <div class="swiper product-swiper overflow-hidden">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+
+
+              <% for(var i=0;i<featured.length;i++) { %>
+              <div class="product-item">
+
+
+
+                <div class="image-holder">
+                  <img src="/uploads/<%- featured[i].product_image1 %>" alt="Books" class="product-image" style="height: 300px; width: 400px;">
+                </div>
+
+                <a href="/product_info/<%- featured[i].product_id %>">
+
+                <div class="cart-concern">
+                  <div class="cart-button d-flex justify-content-between align-items-center">
+                    
+                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">View Product &nbsp;&nbsp;&nbsp;<i class="icon icon-arrow-io"></i>
+                    </button>
+
+                  </div>
+                </div>
+
+                </a>
+
+                <div class="product-detail">
+                  <h3 class="product-title">
+                    <a href="/product_info/<%- featured[i].product_id %>"><%- featured[i].product_name %></a>
+                  </h3>
+                  <div class="item-price text-primary">&#8377; <%- featured[i].price%> <del style="color: black;font-size: 20px;">&nbsp;&#8377;<%-featured[i].duplicate_price %>&nbsp;</del></div>
+                </div>
+              </div>
+              <% } %> 
+            </div>
+
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <section id="trending-products" class="product-store" style="margin-top: -10%;">
+      <div class="container">
+        <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
+          <h2 class="section-title">Trending Products</h2>            
+        </div>
+        <div class="swiper product-swiper overflow-hidden">
+          <div class="swiper-wrapper">
+
+              <% for(var i=0;i<trending.length;i++) { %>
+              <div class="product-item" style="margin-left: 10px;">
+
+
+
+                <div class="image-holder">
+                  <img src="/uploads/<%- trending[i].product_image1 %>" alt="Books" class="product-image" style="height: 300px; width: 300px;">
+                </div>
+
+                <a href="/product_info/<%- trending[i].product_id %>">
+
+                <div class="cart-concern">
+                  <div class="cart-button d-flex justify-content-between align-items-center">
+                    
+                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">View Product &nbsp;&nbsp;&nbsp;<i class="icon icon-arrow-io"></i>
+                    </button>
+
+                  </div>
+                </div>
+
+                </a>
+
+                <div class="product-detail">
+                  <h3 class="product-title">
+                    <a href="/product_info/<%- trending[i].product_id %>"><%- trending[i].product_name %></a>
+                  </h3>
+                  <div class="item-price text-primary">&#8377; <%- trending[i].price%> <del style="color: black;font-size: 20px;">&nbsp;&#8377;<%-trending[i].duplicate_price %>&nbsp;</del></div>
+                </div>
+              </div>
+              <% } %> 
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="latest-collection">
+      <div class="container">
+        <div class="product-collection row">
+          <div class="col-lg-7 col-md-12 left-content">
+            <div class="collection-item">
+              <div class="products-thumb">
+                <img src="/images/collection-item1.jpg" alt="collection item" class="large-image image-rounded">
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 product-entry">
+                <div class="categories">casual collection</div>
+                <h3 class="item-title">street wear.</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim massa diam elementum.</p>
+                <div class="btn-wrap">
+                  <a href="/shop" class="d-flex align-items-center">shop collection <i class="icon icon-arrow-io"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-12 right-content flex-wrap">
+            <div class="collection-item top-item">
+              <div class="products-thumb">
+                <img src="/images/collection-item2.jpg" alt="collection item" class="small-image image-rounded">
+              </div>
+              <div class="col-md-6 product-entry">
+                <div class="categories">Basic Collection</div>
+                <h3 class="item-title">Basic shoes.</h3>
+                <div class="btn-wrap">
+                  <a href="/shop" class="d-flex align-items-center">shop collection <i class="icon icon-arrow-io"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="collection-item bottom-item">
+              <div class="products-thumb">
+                <img src="/images/collection-item3.jpg" alt="collection item" class="small-image image-rounded">
+              </div>
+              <div class="col-md-6 product-entry">
+                <div class="categories">Best Selling Product</div>
+                <h3 class="item-title">woolen hat.</h3>
+                <div class="btn-wrap">
+                  <a href="/shop" class="d-flex align-items-center">shop collection <i class="icon icon-arrow-io"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="selling-products" class="product-store" style="margin-top: -10%;">
+      <div class="container">
+        <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
+          <h2 class="section-title">Best Selling Products</h2>            
+        </div>
+        <ul class="tabs list-unstyled">
+          <li data-tab-target="#all" class="active tab"><a href="/shop">All</a></li>
+          <% for(var i=0;i<category.length;i++) {%>
+          <li><a href="/shop?category_id=<%- category[i].category_id %>" style="padding-right: 30px;"><%- category[i].category_name %></a></li>
+          <% } %>
+        </ul>
+          <div class="swiper-wrapper">
+
+              <% for(var i=0;i<best_selling.length;i++) { %>
+              <div class="product-item" style="margin-left: 10px;">
+
+
+
+                <div class="image-holder">
+                  <img src="/uploads/<%- best_selling[i].product_image1 %>" alt="Books" class="product-image" style="height: 300px; width: 300px;">
+                </div>
+
+                <a href="/product_info/<%- best_selling[i].product_id %>">
+
+                <div class="cart-concern">
+                  <div class="cart-button d-flex justify-content-between align-items-center">
+                    
+                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">View Product &nbsp;&nbsp;&nbsp;<i class="icon icon-arrow-io"></i>
+                    </button>
+
+                  </div>
+                </div>
+
+                </a>
+
+                <div class="product-detail">
+                  <h3 class="product-title">
+                    <a href="/product_info/<%- best_selling[i].product_id %>"><%- best_selling[i].product_name %></a>
+                  </h3>
+                  <div class="item-price text-primary">&#8377; <%- best_selling[i].price%> <del style="color: black;font-size: 20px;">&nbsp;&#8377;<%-best_selling[i].duplicate_price %>&nbsp;</del></div>
+                </div>
+              </div>
+              <% } %> 
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="padding-medium">
+      <div class="container">
+        <div class="reviews-content">
+          <div class="row d-flex flex-wrap">
+            <div class="col-md-2">
+              <div class="review-icon">
+                <i class="icon icon-right-quote"></i>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="swiper testimonial-swiper overflow-hidden">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="testimonial-detail">
+                      <p>“Dignissim massa diam elementum habitant fames. Id nullam pellentesque nisi, eget cursus dictumst pharetra, sit. Pulvinar laoreet id porttitor egestas dui urna. Porttitor nibh magna dolor ultrices iaculis sit iaculis.”</p>
+                      <div class="author-detail">
+                        <div class="name">By Maggie Rio</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="testimonial-detail">
+                      <p>“Dignissim massa diam elementum habitant fames. Id nullam pellentesque nisi, eget cursus dictumst pharetra, sit. Pulvinar laoreet id porttitor egestas dui urna. Porttitor nibh magna dolor ultrices iaculis sit iaculis.”</p>
+                      <div class="author-detail">
+                        <div class="name">By John Smith</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-arrows">
+                <button class="prev-button">
+                  <i class="icon icon-arrow-left"></i>
+                </button>
+                <button class="next-button">
+                  <i class="icon icon-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flash-sales" class="product-store padding-medium">
+      <div class="container">
+        <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
+          <h2 class="section-title">Flash Sales Products</h2>            
+        </div>
+          <div class="swiper-wrapper">
+
+              <% for(var i=0;i<flash.length;i++) { %>
+              <div class="product-item" style="margin-left: 10px;">
+
+
+
+                <div class="image-holder">
+                  <img src="/uploads/<%- flash[i].product_image1 %>" alt="Books" class="product-image" style="height: 300px; width: 300px;">
+                </div>
+
+                <a href="/product_info/<%- flash[i].product_id %>">
+
+                <div class="cart-concern">
+                  <div class="cart-button d-flex justify-content-between align-items-center">
+                    
+                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">View Product &nbsp;&nbsp;&nbsp;<i class="icon icon-arrow-io"></i>
+                    </button>
+
+                  </div>
+                </div>
+
+                </a>
+
+                <div class="product-detail">
+                  <h3 class="product-title">
+                    <a href="/product_info/<%- flash[i].product_id %>"><%- flash[i].product_name %></a>
+                  </h3>
+                  <div class="item-price text-primary">&#8377; <%- flash[i].price%> <del style="color: black;font-size: 20px;">&nbsp;&#8377;<%-flash[i].duplicate_price %>&nbsp;</del></div>
+                </div>
+              </div>
+              <% } %> 
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shoppify-section-banner">
+      <div class="container">
+        <div class="product-collection">
+          <div class="left-content collection-item">
+            <div class="products-thumb">
+              <img src="/images/model.jpg" alt="collection item" class="large-image image-rounded">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 product-entry">
+              <div class="categories">Denim collection</div>
+              <h3 class="item-title">The casual selection.</h3>
+              <p>Vel non viverra ligula odio ornare turpis mauris. Odio aliquam, tincidunt ut vitae elit risus. Tempor egestas condimentum et ac rutrum dui, odio.</p>
+              <div class="btn-wrap">
+                <a href="/shop" class="d-flex align-items-center">shop collection <i class="icon icon-arrow-io"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </section>
+
+    <section id="quotation" class="align-center padding-medium">
+      <div class="inner-content">
+        <h2 class="section-title divider">Quote of the day</h2>
+        <blockquote>
+          <q>It's true, I don't like the whole cutoff-shorts-and-T-shirt look, but I think you can look fantastic in casual clothes.</q>
+          <div class="author-name">- John</div>
+        </blockquote>
+      </div>
+    </section>
+
+    <hr>
+    
+
+
+<%- include("footer.ejs") %>

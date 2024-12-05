@@ -1,0 +1,22 @@
+<%- include("navbar.ejs") %>
+<form action="/admin/update_category" method="post">
+<input type="hidden" name="category_id" value="<%- category_info.category_id %>" class="form-control">
+    <div class="container-fluid bg-white p-4">
+        <div class="row">
+            <div class="mb-3 col-md-12">
+                <h3>Category</h3>
+            </div>
+
+            <div class="mb-3 col-md-12">
+                Category Name
+                <input type="text" name="category_name" value="<%- category_info.category_name %>" class="form-control">
+            </div>
+            <div class="mb-3 col-md-12 text-center">
+                <button class="btn btn-primary">Update Category</button>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<%- include("footer.ejs") %>

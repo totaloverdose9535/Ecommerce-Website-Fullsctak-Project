@@ -1,0 +1,63 @@
+<%- include("navbar.ejs") %>
+<div class="container-fluid bg-white p-4">
+    <div class="row">
+        <div class="mb-3 col-md-12">
+            <h3><button onclick="history.back()" class="btn"><i class="fa fa-angle-left"></i></button> Product Information</h3>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <small>Product Name</small> <br>
+            <h4 class="pl-3"><%- product_info.product_name %></h4>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <small>Product Company</small> <br>
+            <h4 class="pl-3"><%- product_info.product_company %></h4>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <small>Product Colors</small> <br>
+            <h4 class="pl-3"><%- product_info.product_colors %></h4>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <small>Product Label</small> <br>
+            <h4 class="pl-3"><%- product_info.product_label %></h4>
+        </div>
+        
+        <% for(var i=0;i<pricing.length;i++) { %>
+        <div class="col mb-3">
+            <small>Size - <%- pricing[i].product_size %></small> <br>
+            <h4 class="pl-3">&#8377; <%- pricing[i].product_price %> <del style="font-weight: 400; font-size: 14px;">&#8377; <%- pricing[i].product_duplicate_price %></del></h4>
+        </div>
+        <% } %>
+
+        <div class="col-md-12 mb-3">
+            <small>Product Details</small> <br>
+            <h4 class="pl-3" style="font-weight: 400;"><%- product_info.product_details %></h4>
+        </div>
+
+        <div class="col-md-3">
+            <img src="/uploads/<%- product_info.product_image1 %>" width="100%">
+        </div>
+
+        <div class="col-md-3">
+            <img src="/uploads/<%- product_info.product_image2 %>" width="100%">
+        </div>
+
+        <% if(product_info.product_image3) { %>
+        <div class="col-md-3">
+            <img src="/uploads/<%- product_info.product_image3 %>" width="100%">
+        </div>
+        <% } %>
+
+        <% if(product_info.product_image4) { %>
+        <div class="col-md-3">
+            <img src="/uploads/<%- product_info.product_image4 %>" width="100%">
+        </div>
+        <% } %>
+
+    </div>
+</div>
+
+<%- include("footer.ejs") %>

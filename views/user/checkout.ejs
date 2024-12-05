@@ -1,0 +1,98 @@
+<%- include("navbar.ejs") %>
+
+<style>
+    .form-control{
+        width: 100%;
+        border: 1px solid black !important;
+    }
+</style>
+
+
+<form action="/place_order" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Fill The Informatiom</h3>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        Enter Name
+                        <input type="text" name="customer_name" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        Enter Mobile
+                        <input type="number" name="customer_mobile" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        Enter State
+                        <input type="text" name="customer_state" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        Enter District
+                        <input type="text" name="customer_district" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        Enter City
+                        <input type="text" name="customer_city" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        Enter Area
+                        <input type="text" name="customer_area" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        Enter Landmark
+                        <input type="text" name="customer_landmark" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        Enter Pincode
+                        <input type="number" name="customer_address_pincode" class="form-control">
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>Order Summary</h3>
+                <%
+                ttl_qty = 0;
+                ttl_price = 0;
+                for(var i=0;i<carts.length;i++) { %>
+                    <div class="row">
+                        <div class="col-md-8"> <%- carts[i].product_name %> x <%- carts[i].qty %> </div>
+                        <div class="col-md-4">&#8377; <%- carts[i].product_price * carts[i].qty %> </div>
+                    </div>
+                <%
+                ttl_qty = ttl_qty + carts[i].qty;
+                ttl_price = ttl_price + (carts[i].product_price * carts[i].qty);
+
+                } 
+                %>
+                <div class="row" style="color: black; font-weight: bold; font-size: 18px; border-top: 1px solid; padding-top: 10px; margin-top: 10px;">
+                    <div class="col-md-8">Total : <%- ttl_qty %> Products</div>
+                    <div class="col-md-4">&#8377; <%- ttl_price %> </div>
+                </div>
+                <br>
+                <div style="font-weight: bold; color: black;">
+                    Choose Payment Mode
+                    <select name="payment_mode" class="form-control">
+                        <option>Debit Card</option>
+                        <option>Net Banking</option>
+                        <option>Cash On Delivery</option>
+                        <option>UPI</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <button class="btn">Place Order</button>
+            </div>
+        </div>
+    </div>
+</form>
+<br>
+<%- include("footer.ejs") %>

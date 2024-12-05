@@ -1,0 +1,38 @@
+<%- include("navbar.ejs") %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-sm table-bordered">
+                <tr>
+                    <th>Sr.no</th>
+                    <th>Product Name</th>
+                    <th>Product Color</th>
+                    <th>Product Size</th>
+                    <th>Product Company</th>
+                    <th>Product Quantity</th>
+                    <th>Product Price</th>
+                    <th>Total Price</th>
+                    <th>Product Image</th>
+                    <th>Product Details</th>
+                </tr>
+        <% for(var i=0;i<order_details.length;i++) { %>
+            <tr>
+                <td><%- i+1 %></td>
+                <td><%- order_details[i].product_name %></td>
+                <td><%- order_details[i].product_color %></td>
+                <td><%- order_details[i].product_size %></td>
+                <td><%- order_details[i].product_company %></td>
+                <td><%- order_details[i].product_qty %></td>
+                <td><%- order_details[i].product_price %></td>
+                <td><%- order_details[i].product_total %></td>
+                <td><img style="height: 100px; width: 100px;" src="/uploads/<%- order_details[i].product_image1 %>"></td>
+                <td><a href="/order_info"><button>View Invoice</button></a></td>
+            </tr>
+        <% } %>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<%- include("footer.ejs") %>

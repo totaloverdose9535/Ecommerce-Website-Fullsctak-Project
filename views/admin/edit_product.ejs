@@ -1,0 +1,124 @@
+<%- include("navbar.ejs") %>
+<form action="/admin/update_product" method="post" enctype="multipart/form-data">
+<input type="hidden" name="product_id" value="<%- product_info.product_id %>" class="form-control">
+<div class="container-fluid bg-white p-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="mb-3 col-md-12">
+                    <h3>Edit Product</h3>
+                </div>
+        
+                <div class="mb-3 col-md-6">
+                    Product Name*
+                    <input type="text" name="product_name" value="<%- product_info.product_name %>" class="form-control">
+                </div>
+        
+                <div class="mb-3 col-md-6">
+                    Product Company*
+                    <input type="text" name="product_company" value="<%- product_info.product_company %>" class="form-control" list="company_names">
+                    <datalist id="company_names">
+                        <option>Cotton Candy</option>
+                        <option>Adidas</option>
+                        <option>Nike</option>
+                        <option>Peter Englend</option>
+                    </datalist>
+                </div>
+        
+                <div class="mb-3 col-md-6">
+                    Colors* <small>(Seperate With Comma)</small>
+                    <input type="text" name="product_colors" value="<%- product_info.product_colors %>" class="form-control">
+                </div>
+        
+                <div class="mb-3 col-md-6">
+                    Product Label 
+                    <select name="product_label" class="form-control">
+                        <option></option>
+                        <option <%- (product_info.product_label == 'Trending' ) ? 'selected':'' %> >Trending</option>
+                        <option <%- (product_info.product_label == 'Featured' ) ? 'selected':'' %> >Featured</option>
+                        <option <%- (product_info.product_label == 'Flash' ) ? 'selected':'' %> >Flash</option>
+                    </select>
+                </div>
+        
+                <div class="mb-3 col-md-4">
+                    Product Image 1* <small>(Main Image)</small>
+                    <input type="file" name="product_image1" class="form-control" accept="image/*">
+                </div>
+                <div class="mb-3 col-md-2">
+                    <img src="/uploads/<%- product_info.product_image1 %>">
+                </div>
+        
+                <div class="mb-3 col-md-4">
+                    Product Image 2*
+                    <input type="file" name="product_image2" class="form-control" accept="image/*">
+                </div>
+                <div class="mb-3 col-md-2">
+                    <img src="/uploads/<%-product_info.product_image2 %>">
+                </div>
+        
+                <div class="mb-3 col-md-4">
+                    Product Image 3
+                    <input type="file" name="product_image3" class="form-control" accept="image/*">
+                </div>
+                <div class="mb-3 col-md-2">
+                    <img src="/uploads/<%- product_info.product_image3 %>">
+                </div>
+        
+                <div class="mb-3 col-md-4">
+                    Product Image 4
+                    <input type="file" name="product_image4" class="form-control" accept="image/*">
+                </div>
+                <div class="mb-3 col-md-2">
+                    <img src="/uploads/<%- product_info.product_image4 %>">
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="mb-3 col-md-12">
+                <h3>Product Pricing</h3>
+                </div>
+
+                <div class="mb-3 col-md-12">
+                    <table class="table table-bordered table-sm table-striped">
+                        <tr>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Duplicate</th>
+                        </tr>
+                        <% 
+                        for(var i=0;i<pricing.length;i++){ %>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="product_pricing_id" value="<%- pricing[i].product_pricing_id %>">
+                                <input type="text" name="product_size" value="<%- pricing[i].product_size %>" class="form-control">
+                            </td>
+
+                            <td>
+                                <input type="number" name="product_price" class="form-control text-right" value="<%- pricing[i].product_price %>">
+                            </td>
+
+                            <td>
+                                <input type="number" name="product_duplicate_price" class="form-control text-right" value="<%- pricing[i].product_duplicate_price %>">
+                            </td>
+                        </tr>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 col-md-12">
+            Product Details
+            <textarea name="product_details" class="form-control" id="editor"><%- product_info.product_details %></textarea>
+        </div>
+
+        <div class="mb-3 col-md-12 text-center" >
+            <button class="btn btn-primary">Update Product</button>
+        </div>
+    
+</div>
+</form>
+
+
+<%- include("footer.ejs") %>

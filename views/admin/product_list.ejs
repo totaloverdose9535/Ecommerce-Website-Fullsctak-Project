@@ -1,0 +1,53 @@
+<%- include("navbar.ejs") %>
+<div class="container-fluid bg-white p-4">
+    <div class="row">
+        <div class="mb-3 col-md-12">
+            <h3>Product List</h3>
+        </div>
+        <div class="mb-3 col-md-12">
+            <table class="table table-bordered table-striped table-sm">
+                <tr>
+                    <th width="10%">Action</th>
+                    <th>SrNo</th>
+                    <th>Product Name</th>
+                    <th>Company</th>
+                    <th>Color</th>
+                    <th>Label</th>
+                    <th>Price Range</th>
+                </tr>
+                <% for(var i=0;i<products.length;i++) { %>
+                    <tr>
+                        <td style="white-space: nowrap;">
+                            <a href="/admin/view_product/<%- products[i].product_id %>">
+                                <button class="btn btn-sm btn-primary">
+                                    <i class="fa fa-print"></i>
+                                </button>
+                            </a>
+
+                            <a href="/admin/edit_product/<%- products[i].product_id %>">
+                            <button class="btn btn-sm btn-secondary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            </a>
+
+                            <a href="/admin/delete_product/<%- products[i].product_id %>">
+                                <button class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure?')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </a>
+
+                        </td>
+                        <td><%- i+1 %></td>
+                        <td><%- products[i].product_name %></td>
+                        <td><%- products[i].product_company %></td>
+                        <td><%- products[i].product_colors %></td>
+                        <td><%- products[i].product_label %></td>
+                        <td>&#8377; <%- products[i].min_price %> - <%- products[i].max_price %></td>
+                    </tr>
+                <% } %>   
+            </table>
+        </div>
+    </div> 
+</div>
+
+<%- include("footer.ejs") %>

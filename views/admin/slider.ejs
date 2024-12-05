@@ -1,0 +1,76 @@
+<%- include("navbar.ejs") %>
+<form action="/admin/save_slide" method="post" enctype="multipart/form-data">
+<div class="container-fluid bg-white p-4">
+    <div class="row">
+        <div class="mb-3 col-md-12">
+            <h3>Slider</h3>
+        </div>
+        <div class="mb-3 col-12">
+            Enter Title
+            <input type="text" name="slide_title" class="form-control">
+        </div>
+        <div class="mb-3 col-12">
+            Enter Details
+            <textarea name="slide_details" class="form-control"></textarea>
+        </div>
+        <div class="mb-3 col-12">
+            Button Link
+            <input type="url" name="button_link" class="form-control">
+        </div>
+        <div class="mb-3 col-6">
+            Button Text
+            <input type="text" name="button_text" class="form-control">
+        </div>
+        <div class="mb-3 col-6">
+            Slider Image
+            <input type="file" name="slide_image" class="form-control" accept="image/*">
+        </div>
+        <div class="mb-3 col-12 text-center">
+            <button class="btn btn-primary">Save Slide</button>
+        </div>
+    </div>
+</div>
+</form>
+
+<br><br>
+<div class="container-fluid bg-white p-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Slides</h3>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-sm table-bordered">
+                <tr>
+                    <th>Action</th>
+                    <th>SN</th>
+                    <th>Title</th>
+                    <th>Details</th>
+                    <th>Button Link</th>
+                    <th>Button Text</th>
+                    <th>Image</th>
+                </tr>
+                <% for(i=0;i<slides.length;i++) { %>
+
+                    <tr>
+                        <td style="white-space: nowrap;">
+                            <a href="/admin/edit_slide/<%- slides[i].slider_id %>">
+                                <button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>
+                            </a>
+                            <a href="/admin/delete_slide/<%- slides[i].slider_id %>">
+                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                            </a>  
+                        </td>
+                        <td><%-i+1%></td>
+                        <td><%-slides[i].slide_title%></td>
+                        <td><%-slides[i].slide_details%></td>
+                        <td><%-slides[i].button_link%></td>
+                        <td><%-slides[i].button_text%></td>
+                        <td><img src="/uploads/<%-slides[i].slide_image%>" width="100px"></td>
+
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </div>
+</div>
+<%- include("footer.ejs") %>

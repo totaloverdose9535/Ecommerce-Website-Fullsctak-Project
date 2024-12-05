@@ -1,0 +1,189 @@
+<%- include("navbar.ejs") %>
+
+<section class="site-banner jarallax min-height300 padding-large" style="background: url(/images/hero-image.jpg) no-repeat; background-position: top;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="page-title">Shop page</h1>
+          <div class="breadcrumbs">
+            <span class="item">
+              <a href="/">Home /</a>
+            </span>
+            <span class="item">Shop</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="shopify-grid padding-large">
+    <div class="container">
+      <div class="row">
+
+        <section id="selling-products" class="col-md-9 product-store">
+          <div class="container">
+            
+            <ul class="tabs list-unstyled">
+              <li data-tab-target="#all" class="active tab"><a href="/shop">All</a></li>
+              <% for(var i=0;i<category.length;i++) {%>
+              <li><a href="/shop?category_id=<%- category[i].category_id %>" style="padding-right: 30px;"><%- category[i].category_name %></a></li>
+              <% } %>
+            </ul>
+
+            <div>
+              <div id="all">
+                <div class="row d-flex flex-wrap">
+                  <% for(var i=0;i<products.length;i++) { %>
+                  <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                    <div class="image-holder">
+                      <img src="/uploads/<%- products[i].product_image1 %>" alt="Books" class="product-image" style="height: 300px; width: 400px;">
+                    </div>
+
+                    <a href="/product_info/<%- products[i].product_id %>">
+
+                    <div class="cart-concern">
+                      <div class="cart-button d-flex justify-content-center align-items-center">
+                        
+                        <button type="button" class="btn-wrap cart-link d-flex align-items-center">View Product &nbsp;&nbsp;&nbsp;<i class="icon icon-arrow-io"></i>
+                        </button>
+                  
+                      </div>
+                    </div>
+                  </a>
+                    <div class="product-detail">
+                      <h3 class="product-title">
+                        <a href="/product_info/<%- products[i].product_id %>"><%- products[i].product_name %></a>
+                      </h3>
+                      <div class="item-price text-primary">&#8377; <%- products[i].price%> <del style="color: black;font-size: 20px;">&nbsp;&#8377;<%-products[i].duplicate_price %>&nbsp;</del></div>
+                    </div>
+                  </div>
+                  <% } %> 
+                </div>
+              </div>
+            </div>
+
+            <nav class="navigation paging-navigation text-center padding-medium" role="navigation">
+              <div class="pagination loop-pagination d-flex justify-content-center">
+                <% for(i=1;i<total_pages;i++) { %>
+                <a class="page-numbers" href="/shop?page_no=<%= i %>"><%- i %></a>
+                <% } %>
+              </div>
+            </nav>
+          </div>
+        </section>
+
+        <aside class="col-md-3">
+          <div class="sidebar">
+            <div class="widgets widget-menu">
+              <div class="widget-search-bar">
+                <form action="/shop" role="search" method="get" class="d-flex">
+                  <input class="search-field" placeholder="Search" type="text" name="search">
+                  <button class="btn btn-dark"><i class="icon icon-search"></i></button>
+                </form>
+              </div> 
+            </div>
+            <div class="widgets widget-product-tags">
+              <h5 class="widget-title">Colors</h5>
+              <ul class="product-tags sidebar-list list-unstyled">
+                <a href="/shop">All Colors</a>
+                <% for(var i=0;i<colors.length;i++) { %>
+                <li class="tags-item">
+                  <a href="/shop?color=<%- colors[i].product_colors %>"> <%- colors[i].product_colors %> </a>
+                </li>
+                <% } %>
+              </ul>
+            </div>
+            <div class="widgets widget-product-brands">
+              <h5 class="widget-title">Brands</h5>
+
+              <ul class="product-tags sidebar-list list-unstyled">
+                <a href="/shop">All Brands</a>
+                <% for(var i=0;i<companies.length;i++) { %>
+                <li class="tags-item">
+                  <a href="/shop?company=<%- companies[i].product_company %>"><%- companies[i].product_company %></a>
+                </li>
+                <% } %>
+                
+              </ul>
+            </div>
+
+          </div>
+        </aside>
+        
+      </div>        
+    </div>      
+  </div>
+
+  <hr>
+  <section id="latest-blog" class="padding-large">
+    <div class="container">
+      <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
+        <h2 class="section-title">our Journal</h2>
+        <div class="btn-wrap align-right">
+          <a href="/blog" class="d-flex align-items-center">Read All Articles <i class="icon icon icon-arrow-io"></i>
+          </a>
+        </div>
+      </div>
+      <div class="row d-flex flex-wrap">
+        <article class="col-md-4 post-item">
+          <div class="image-holder zoom-effect">
+            <a href="/single-post">
+              <img src="/images/post-img1.jpg" alt="post" class="post-image">
+            </a>
+          </div>
+          <div class="post-content d-flex">
+            <div class="meta-date">
+              <div class="meta-day text-primary">22</div>
+              <div class="meta-month">Aug-2021</div>
+            </div>
+            <div class="post-header">
+              <h3 class="post-title">
+                <a href="/single-post">top 10 casual look ideas to dress up your kids</a>
+              </h3>
+              <a href="/blog" class="blog-categories">Fashion</a>
+            </div>
+          </div>
+        </article>
+        <article class="col-md-4 post-item">
+          <div class="image-holder zoom-effect">
+            <a href="/single-post">
+              <img src="/images/post-img2.jpg" alt="post" class="post-image">
+            </a>
+          </div>
+          <div class="post-content d-flex">
+            <div class="meta-date">
+              <div class="meta-day text-primary">25</div>
+              <div class="meta-month">Aug-2021</div>
+            </div>
+            <div class="post-header">
+              <h3 class="post-title">
+                <a href="/single-post">Latest trends of wearing street wears supremely</a>
+              </h3>
+              <a href="/blog" class="blog-categories">Trending</a>
+            </div>
+          </div>
+        </article>
+        <article class="col-md-4 post-item">
+          <div class="image-holder zoom-effect">
+            <a href="/single-post">
+              <img src="/images/post-img3.jpg" alt="post" class="post-image">
+            </a>
+          </div>
+          <div class="post-content d-flex">
+            <div class="meta-date">
+              <div class="meta-day text-primary">28</div>
+              <div class="meta-month">Aug-2021</div>
+            </div>
+            <div class="post-header">
+              <h3 class="post-title">
+                <a href="/single-post">types of comfortable clothes ideas for women</a>
+              </h3>
+              <a href="/blog" class="blog-categories">Inspiration</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+<%- include("footer.ejs") %>

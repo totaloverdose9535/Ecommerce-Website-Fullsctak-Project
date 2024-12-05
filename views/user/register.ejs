@@ -1,0 +1,35 @@
+<%- include("navbar.ejs") %>
+<br><br>
+<form action="/do_register" method="post">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-md-4">
+            <div style="border: 1px solid black; padding: 20px;text-align: center;">
+                <h3>Create Account</h3>
+
+                <p style="margin: 0%; padding: 0%;text-align: left;font-weight: 700;">Enter Name</p>
+                <input type="text" name="customer_name" class="form-control" style="width: 100%;">
+                <br>
+
+                <p style="margin: 0%; padding: 0%;text-align: left;font-weight: 700;">Enter Mobile</p>
+                <input type="number" name="customer_mobile" class="form-control" style="width: 100%;">
+                <br>
+
+                <p style="margin: 0%; padding: 0%;text-align: left;font-weight: 700;">Enter Email</p>
+                <input type="email" name="customer_email" class="form-control" style="width: 100%;">
+                <br>
+
+                <p style="margin: 0%; padding: 0%;text-align: left;font-weight: 700;">Enter Password</p>
+                <input type="password" name="customer_password" class="form-control" style="width: 100%;">
+                <br>
+
+                <button class="btn btn-primary">Register</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<br><br>
+
+<%- include("footer.ejs") %>

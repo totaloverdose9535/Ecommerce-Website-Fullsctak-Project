@@ -1,0 +1,205 @@
+<%- include("navbar.ejs") %>
+
+<style>
+
+.cart-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-header, .cart-item, .cart-footer {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-header {
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+
+.cart-item {
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-info img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.quantity input {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+}
+
+.price, .total {
+    text-align: center;
+}
+
+.remove button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.remove button:hover {
+    background-color: #c0392b;
+}
+
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 2px solid #ddd;
+}
+
+.subtotal {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.checkout-btn {
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.checkout-btn:hover {
+    background-color: #2ecc71;
+}
+</style>
+
+
+<div class="container">
+    <h1>Shopping Cart</h1>
+    <div class="cart-header">
+        <span>Product</span>
+        <span>Quantity</span>
+        <span class="price">Price</span>
+        <span class="total">Total</span>
+        <span class="remove">Remove</span>
+    </div>
+
+    <%
+    sum = 0;
+    for(var i=0;i<carts.length;i++) { %>
+    
+        <div class="cart-item">
+            <div class="product-info">
+                <img src="/uploads/<%- carts[i].product_image1 %>" alt="<%- carts[i].product_image1 %>">
+                <span class="product-name" style="color: black; font-weight: 500; line-height: 130%;">
+                    <%- carts[i].product_name %>
+                    <br>
+                    <span style="color: grey; font-size: 15px;font-weight: 400;">Size : <%- carts[i].product_size %> ,</span>
+                    <span style="color: grey; font-size: 15px;font-weight: 400;">Color : <%- carts[i].product_colors %></span>
+                </span>
+            </div>
+            <div class="quantity">
+                <button onclick="decerease_qty('<%- carts[i].cart_id %>')">-</button>
+                <input type="text" id="qty_input<%- carts[i].cart_id %>" disabled value="<%- carts[i].qty %>" min="1">
+                <button onclick="increase_qty('<%- carts[i].cart_id %>')">+</button>
+            </div>
+            <div class="price">&#8377; <span id="product_rate<%- carts[i].cart_id %>"><%- carts[i].product_price %></span></div>
+            <div class="total">&#8377; <span class="product_total" id="product_total<%- carts[i].cart_id %>"><%- carts[i].product_price * carts[i].qty %></span></div>
+            <div class="remove">
+                <a href="/delete_cart_product/<%- carts[i].cart_id %>">
+                    <button onclick="return confirm('Are You Sure?')">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    <% 
+    sum = sum + (carts[i].product_price * carts[i].qty);
+    } %>
+
+    <div class="cart-footer">
+        <div class="subtotal">
+            <span>Subtotal:</span>
+            <span id="sub_total">&#8377; <%- sum %></span>
+        </div>
+        <a href="/checkout">
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </a>
+    </div>
+</div>
+
+
+<script>
+    function increase_qty(cart_id)
+    {
+        var elmt = document.getElementById("qty_input"+cart_id);
+        elmt.value = Number(elmt.value)+1;    
+        var qty = elmt.value;
+        var rate = document.getElementById("product_rate"+cart_id).innerHTML;
+        var total = qty * rate;
+        document.getElementById("product_total"+cart_id).innerHTML = total;
+
+        $.ajax({
+            "url":"/increase_qty_in_backend",
+            "data":{"cart_id":cart_id},
+            "type":"post"
+        }).done(function(res){
+            console.log(res);
+        });
+        calc_sub_total()
+    }
+
+    function decerease_qty(cart_id)
+    {
+        var elmt = document.getElementById("qty_input"+cart_id);
+        if(Number(elmt.value) > 1)
+        {
+        elmt.value = Number(elmt.value)-1;
+        var qty = elmt.value;
+        var rate = document.getElementById("product_rate"+cart_id).innerHTML;
+        var total = qty * rate;
+        document.getElementById("product_total"+cart_id).innerHTML = total;
+        $.ajax({
+            "url":"/decrease_qty_in_backend",
+            "data":{"cart_id":cart_id},
+            "type":"post"
+        }).done(function(res){
+            console.log(res);
+        });
+        calc_sub_total()
+        }
+    }
+
+
+    function calc_sub_total()
+    {   
+        var ttl = document.getElementsByClassName("product_total");
+        var sum = 0;
+        for(var i=0;i<ttl.length;i++)
+        {
+            sum = sum + Number(ttl[i].innerHTML);
+        }
+        $("#sub_total").html("&#8377; "+sum);
+    }
+</script>
+<%- include("footer.ejs") %>

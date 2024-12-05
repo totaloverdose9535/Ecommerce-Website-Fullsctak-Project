@@ -1,0 +1,22 @@
+<%- include("navbar.ejs") %>
+
+<h4><button onclick="history.back()" class="btn"><i class="fa fa-angle-left"></i></button> User Info</h4>
+<form action="/change_password/<%-user_info.customer_id%>" method="post">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="text-align: left;color: black; font-weight: 900; font-size: 25px; margin-bottom: 50px;">
+            Name : <%- user_info.customer_name %>
+            <br>
+            Mobile No : <%- user_info.customer_mobile %>
+            <br>
+            Email Id : <%- user_info.customer_email %>
+            <br>
+            Password : <input type="password" name="customer_password" class="form-control" value="<%- user_info.customer_password %>">
+            <br>
+            <button class="btn btn-primary">Change Password</button>
+        </div>
+    </div>
+</div>
+</form>
+
+<%- include("footer.ejs") %>
